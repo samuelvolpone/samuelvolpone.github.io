@@ -1,32 +1,3 @@
 theme: jekyll-theme-minimal
-name: Deploy Jekyll Site
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v3
-        with:
-          ruby-version: '3.1'
-
-      - name: Install dependencies
-        run: bundle install
-
-      - name: Build the site
-        run: bundle exec jekyll build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+title: Sam's homepage
+description: Bookmark this to keep an eye on my project updates!
