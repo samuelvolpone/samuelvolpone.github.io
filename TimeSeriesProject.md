@@ -1,4 +1,21 @@
-### Toy Example
+# Time Series using Stochastic Volatility
+## Introduction
+In the finance landscape, markets are unmethodical and easily influenced by outside factors.
+Commonly, modeling these markets assumed constant volatility, an ever-steady increase or decrease in
+the mean. However, these models failed to capture the complexities of nature that influence markets,
+which are often unpredictable and unsteady. Enter stochastic volatility models, a time series modelling
+technique. Unlike other methods, stochastic volatility does not assume that volatility is constant, and
+instead considers volatility a random process.
+To contribute to the use of stochastic volatility models in financial markets, we decided to use a
+dataset which contains stock pricing information on Nvidia from March 1
+st, 2022, to March 1st, 2024. We
+obtained this data using the quantmod package in R. The intent is to forecast stock prices. Nvidia is a
+company renowned for its developments in technology and AI. Since 2017, Nvidia has seen a massive
+increase in its stock price. However, like all companies and all markets, volatility is not constant and
+experiences random fluctuations as well. Using stochastic volatility modeling processes, we aim to
+predict future stock prices, considering random variability. 
+
+## Toy Example
 
 ```{r}
 # Simulate data from a stochastic volatility model
@@ -41,7 +58,7 @@ plot(sim)
 ```
 
 
-# EDA for NVDA
+## EDA for NVDA
 
 ```{r}
 NVDA = getSymbols.yahoo('NVDA', from='2022-03-01', to='2024-03-01',auto.assign = FALSE)
@@ -79,7 +96,7 @@ ggplot(NVDAdf, aes(x = factor(year), y = price, fill = factor(year))) +
   theme(legend.position = "none")
 ```
 
-# Simple Stochastic Volatility example for NVDA
+## Simple Stochastic Volatility example for NVDA
 
 ```{r}
 NVDAdf$logpricediff <- NA
@@ -122,7 +139,7 @@ plot(fitNVDA)
 ```
 
 
-### Choosing two other securities to provide the prior
+## Choosing two other securities to provide the prior
 
 ```{r}
 NVDA = getSymbols.yahoo('NVDA', from='2022-03-01', to='2024-03-01',auto.assign = FALSE)
@@ -188,7 +205,7 @@ dim(returns_df)
 dim(closing_df)
 ```
 
-### Comparing the three Securities
+## Comparing the three Securities
 
 ```{r}
 # Convert date to date format
