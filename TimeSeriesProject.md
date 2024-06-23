@@ -1,23 +1,3 @@
----
-title: "Stochastic Volatility TimeSeries"
-author: "Sam, Kindyl"
-date: "2024-03-08"
-output:
-  pdf_document: default
-  html_document: default
----
-
-```{r setup, include=FALSE}
-#install.packages("stochvol")
-library(stochvol)
-library(tidyverse)
-library(fpp3)
-library(ggplot2)
-library(lubridate)
-library(quantmod)
-library(corrplot)
-```
-
 ### Toy Example
 
 ```{r}
