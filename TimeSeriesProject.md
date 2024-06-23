@@ -6,6 +6,7 @@ the mean. However, these models failed to capture the complexities of nature tha
 which are often unpredictable and unsteady. Enter stochastic volatility models, a time series modelling
 technique. Unlike other methods, stochastic volatility does not assume that volatility is constant, and
 instead considers volatility a random process.
+
 To contribute to the use of stochastic volatility models in financial markets, we decided to use a
 dataset which contains stock pricing information on Nvidia from March 1
 st, 2022, to March 1st, 2024. We
