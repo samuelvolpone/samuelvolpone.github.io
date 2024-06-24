@@ -38,7 +38,7 @@ summary(fit)
 # Plot of estimated volatility
 plot(fit)
 ```
-
+![Figure 1](images/TimeSeriesProject/Fig 1.png)
 ```{r}
 sim <- svsim(500, mu = -9, phi = 0.99, sigma = 0.1)
 par(mfrow = c(2, 1))
@@ -57,7 +57,7 @@ summary(sim)
 plot(sim)
 
 ```
-
+![Figure 2](images/TimeSeriesProject/Fig 2.png)
 
 ## EDA for NVDA
 
@@ -96,7 +96,7 @@ ggplot(NVDAdf, aes(x = factor(year), y = price, fill = factor(year))) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
-
+![Figure 3](images/TimeSeriesProject/Fig 3.png)
 ## Simple Stochastic Volatility example for NVDA
 
 ```{r}
@@ -122,22 +122,7 @@ summary(fitNVDA)
 # Plot of estimated volatility
 plot(fitNVDA)
 ```
-
-```{r}
-# set.seed(123)  # Set seed for reproducibility
-# 
-# # Number of observations
-# n <- 100
-# 
-# # Simulate the latent volatility process
-# volatility <- svdraw(list(alpha = 0.9, beta = 0.98, sigma = 0.1), T = n, n = 1)
-# 
-# # Simulate observed data based on the latent volatility process
-# observed <- rnorm(n, mean = 0, sd = sqrt(exp(volatility)))
-# 
-# # Plot the simulated data
-# plot(observed, type = "l", main = "Simulated Stochastic Volatility")
-```
+![Figure 4](images/TimeSeriesProject/Fig 4.png)
 
 
 ## Choosing two other securities to provide the prior
@@ -233,6 +218,7 @@ ggplot(closing_df, aes(x = date)) +
   ggtitle("Closing Prices of NVDA, S&P 500, and AMD")
 
 ```
+![Figure 5](images/TimeSeriesProject/Fig 5.png)
 
 # Correlation Matrix
 
@@ -250,7 +236,7 @@ corrplot(correlation_matrix, method = "square", type = "upper", order = "hclust"
          tl.col = "black", tl.srt = 45, diag = FALSE)
 
 ```
-
+![Figure 6](images/TimeSeriesProject/Fig 6.png)
 
 # Stochastic Volatility for NVDA w/ S&P500 and AMD prior
 
@@ -271,7 +257,7 @@ res <- svsample(logretNVDA, designmatrix = regressors, thin = 10)
 
 plot(res)
 ```
-
+![Figure 7](images/TimeSeriesProject/Fig 7.png)
 ### Volplot
 
 ```{r}
@@ -305,3 +291,4 @@ for (i in 1:3) {
 lines(len:(len+ahead), c(tail(priceNVDA, 1), expost),
       col = 2)
 ```
+![Figure 8](images/TimeSeriesProject/Fig 8.png)
