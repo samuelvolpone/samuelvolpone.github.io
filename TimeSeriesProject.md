@@ -258,13 +258,6 @@ res <- svsample(logretNVDA, designmatrix = regressors, thin = 10)
 plot(res)
 ```
 ![Figure 7](images/TimeSeriesProject/Fig 7.png)
-### Volplot
-
-```{r}
-volplot(res, forecast = 100)
-
-?volplot()
-```
 
 
 ### Predicting Based on the Model with S&P500 and AMD prior 30 days ahead
