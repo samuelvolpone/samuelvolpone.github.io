@@ -2,3 +2,4 @@ Hello Everyone! My name is Samuel Volpone, and Im track to graduate with a Maste
 
 ## [Projects](./projects.md)
 ## [Resume](./resume.md)
+## [Resume](./about.md)
