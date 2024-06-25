@@ -1,3 +1,4 @@
+#### [<back to projects](./projects.md)
 # Time Series using Stochastic Volatility
 ## Introduction
 In the finance landscape, markets are unmethodical and easily influenced by outside factors.
