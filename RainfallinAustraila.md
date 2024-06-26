@@ -74,7 +74,7 @@ summary(df)
 
 ```
 
-3.  For the numerical variables, plot box plots based on values of `y`.
+3.  For the numerical variables, plot box plots based on values of RainTomorrow.
 
 ```{r}
 # Variables of interest
