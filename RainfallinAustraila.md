@@ -4,7 +4,7 @@
 The significance of accurately predicting rainfall cannot be overstated, especially in a continent like Australia, known for its diverse climatic zones ranging from deserts to rainforests. This study leverages an extensive dataset comprising daily weather observations from multiple Australian locales, containing variables such as temperature, humidity, wind speed, and atmospheric pressure. The primary objective is to predict the occurrence of rain the following day, with the binary target variable "RainTomorrow" indicating the presence of at least 1mm of rainfall.
 
 ## Read in the CSV File
-    ```{r}
+```{r}
 set.seed(80)
 df_full <- read.csv("C:/Users/svolp/OneDrive/Desktop/Upper Level Classes/DS 805 Statistical Learning/weatherAUS.csv", sep = ",", header = TRUE)
 
