@@ -1,27 +1,9 @@
----
-title: "DS 805 Final Project"
-author: "Sam, Kindyl, Kajal"
----
-```{r}
-library(quantmod)
-library(imputeTS)
-library(ipred)
-library(rpart.plot)
-library(Metrics)
-library(caret)
-library(rpart)
-library(randomForest)
-library(tidyverse)
-library(mice)
-library(cowplot)
-library(skimr)
-library(tidyverse)
-library(ggplot2)
-library(pROC)
-library(class)
-```
+# Classification of Rainfall in Australia
+## Introduction
 
+The significance of accurately predicting rainfall cannot be overstated, especially in a continent like Australia, known for its diverse climatic zones ranging from deserts to rainforests. This study leverages an extensive dataset comprising daily weather observations from multiple Australian locales, containing variables such as temperature, humidity, wind speed, and atmospheric pressure. The primary objective is to predict the occurrence of rain the following day, with the binary target variable "RainTomorrow" indicating the presence of at least 1mm of rainfall.
 
+## Read in the CSV File
 ```{r}
 set.seed(80)
 df_full <- read.csv("C:/Users/svolp/OneDrive/Desktop/Upper Level Classes/DS 805 Statistical Learning/weatherAUS.csv", sep = ",", header = TRUE)
