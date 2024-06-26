@@ -20,7 +20,7 @@ Description
 
 **Skills:** Data Visualization, Financial Modeling
  
-## [Rainfall in Australia](./RainfallinAustralia.md)
+## [Rainfall in Australia](./RainfallinAustraila.md)
 Description
 
 **Programs:** R
