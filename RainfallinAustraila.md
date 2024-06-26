@@ -1,20 +1,8 @@
 ---
 title: "DS 805 Final Project"
 author: "Sam, Kindyl, Kajal"
-editor: visual
-format:
-  html:
-    embed-resources: true
-    self-contained-math: true
-execute: 
-  echo: true
-  warning: true
 ---
-
 ```{r}
-# install.packages("mice")
-# install.packages("VIM")
-# install.packages("cowplot")
 library(quantmod)
 library(imputeTS)
 library(ipred)
@@ -33,30 +21,10 @@ library(pROC)
 library(class)
 ```
 
-## Data Requirements:
-
--   You can pick any data you want as long as it is a **classification** problem and has **at least 500 observations**.
-
--   Some sources are:
-
-    -   Kaggle <https://www.kaggle.com/datasets?tags=13302-Classification>
-    -   UCI Machine Learning Repository <https://archive.ics.uci.edu/ml/datasets.php?format=&task=cla&att=&area=&numAtt=&numIns=&type=&sort=nameUp&view=table>
-
--   Read your data in R and call it df. For the rest of this document `y` refers to the variable you are predicting.
 
 ```{r}
 set.seed(80)
 df_full <- read.csv("C:/Users/svolp/OneDrive/Desktop/Upper Level Classes/DS 805 Statistical Learning/weatherAUS.csv", sep = ",", header = TRUE)
-
-#table(df_full$Location)
-
-# Southeast AUS
-# southeast_aus <- c("Adelaide", "Canberra", "Sydney", "SydneyAirport", "Melbourne", "MelbourneAirport", "Wollongong", "Hobart", "Launceston", "MountGinini")
-
-# Filter to shrink the dataset to 18k rows instead of 145k
-# Southeast AUS
-# df <- subset(df_full, Location %in% southeast_aus)
-
 
 df=na.omit(df_full)
 
@@ -67,27 +35,9 @@ df <- df[!is.na(df$RainTomorrow), ]
 df$RainTomorrow <- ifelse(df$RainTomorrow == "No", 0, 1)
 df$RainToday <- ifelse(df$RainToday == "No", 0, 1)
 df$Date <- as.POSIXct(df$Date)
-
-
 ```
 
-## The grading rubric can be found below:
-
-|                               | R code | Decision/Why | Communication of findings |
-|-------------------------------|--------|--------------|---------------------------|
-| Percentage of Assigned Points | 30%    | 35%          | 35%                       |
-
--   **Decision/why?**: Explain your reasoning behind your choice of the procedure, set of variables and such for the question.
-
-    -   Explain why you use the procedure/model/variable
-    -   To exceed this criterion, describe steps taken to implement the procedure in a non technical way.
-
--   **Communication of your findings**: Explain your results in terms of training, testing, and prediction of the variable `Y`
-
-    -   Explain why you think one model is better than the other.
-    -   To exceed this criterion, explain your model and how it predicts `y` in a non technical way.
-
-## Part 1: Exploratory Data Analysis (20 points)
+## Part 1: Exploratory Data Analysis
 
 1.  Check for existence of NA's (missing data), if necessary, impute the missing data.
 
@@ -105,7 +55,7 @@ df$Date <- as.POSIXct(df$Date)
     table(df$RainTomorrow)
     ```
 
-2.  If necessary, classify all categorical variables **except the one you are predicting** as factors. Calculate the summary statistics of the entire data set.
+2.  Classify all categorical variables as factors. Calculate the summary statistics of the entire data set.
 
     ```{r}
     df <- df %>% 
@@ -125,7 +75,7 @@ df$Date <- as.POSIXct(df$Date)
 
     ```
 
-3.  For the numerical variables, plot box plots based on values of `y`. Do you see a difference between the box plots for any of the variables you choose?
+3.  For the numerical variables, plot box plots based on values of `y`.
 
     ```{r}
     # Variables of interest
@@ -193,8 +143,7 @@ df$Date <- as.POSIXct(df$Date)
     combined_plot
     ```
 
-4.  For the categorical variables, plot bar charts for the different values of `y`. Do you see a difference between plots for any of the variables you choose?
-
+4.  For the categorical variables, plot bar charts for the different values of `y`.
     ```{r}
     # Location WindGustDir WindDir9am WindDir3pm
 
@@ -229,7 +178,7 @@ df$Date <- as.POSIXct(df$Date)
 
     ```
 
-5.  Test/training separation: Separate your data into 80% training and 20% testing data. Do not forget to set seed. Please use the same separation for the whole assignment, as it is needed to be able to compare the models.
+5.  Test/training separation
 
     ```{r}
     set.seed(80)
@@ -243,7 +192,7 @@ df$Date <- as.POSIXct(df$Date)
     # test_locations <- table(df_test$Location)
     ```
 
-## Part 2: Logistic Regression or LDA (15 points)
+## Part 2: Logistic Regression or LDA
 
 1.  Develop a classification model where the variable `y` is the dependent variable using the Logistic Regression or LDA, rest of the variables, and your training data set.
 
@@ -271,13 +220,7 @@ cm
     
 ```
 
-```{r}
-
-```
-
 ```{{r}}
-?roc()
-
 # Create ROC curve
 roc_curve <- roc(df_test$RainTomorrow, logprob)
 
@@ -289,9 +232,8 @@ legend("bottomright", legend = paste("AUC =", round(auc(roc_curve), 2)), col = "
 
 ```
 
-3.  Explain your choices and communicate your results.
 
-## Part 3: KNN (15 points)
+## Part 3: KNN
 
 1.  Apply a KNN classification to the training data using.
 
@@ -396,7 +338,7 @@ legend("bottomright", legend = paste("AUC =", round(knn_auc, 2)), col = "red", l
 
 3.  Explain your choices and communicate your results.
 
-## Part 4: Tree Based Model (15 points)
+## Part 4: Tree Based Model
 
 1.  Apply one of the following models to your training data: *Random Forest, Bagging or Boosting*
 
@@ -472,7 +414,7 @@ text(0.8, 0.2, paste("AUC =", round(auc(rf_roc_curve), 2)))
 
 ```
 
-## Part 5: SVM (15 points)
+## Part 5: SVM 
 
 1.  Apply a SVM model to your training data.
 
@@ -571,14 +513,3 @@ legend(x = "bottomright",
        legend = c("Decision Tree", "Pruned Tree", "Bagged Trees", "Random Forest", "Boosting"),
        fill = 1:nmod)
 ```
-
-\
-
-## Part 6: Conclusion (20 points)
-
-1.  (10 points) Based on the different classification models, which one do you think is the best model to predict `y`? Please consider the following in your response:
-
-    -   Accuracy/error rates
-    -   Do you think you can improve the model by adding any other information?
-
-2.  (10 points) What are your learning outcomes for this assignment? Please focus on your learning outcomes in terms of statistical learning, model interpretations, and R skills - it is up to you to include this part in your presentation or not.
