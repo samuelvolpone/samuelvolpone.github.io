@@ -142,7 +142,7 @@ combined_plot <- plot_grid(MinTemp_Boxplot, MaxTemp_Boxplot, Rainfall_Boxplot, E
 combined_plot
 ```
 
-4.  For the categorical variables, plot bar charts for the different values of `y`.
+4.  For the categorical variables, plot bar charts for the different values of RainTomorrow.
 ```{r}
 # Location WindGustDir WindDir9am WindDir3pm
 
