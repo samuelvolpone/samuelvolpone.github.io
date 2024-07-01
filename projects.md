@@ -11,7 +11,7 @@ Description
 
 **Programs:** R, MS Powerpoint
 
-**Skills:** Data Visualization
+**Skills:** Data Visualization, Machine Learning
   
 ## [Cyberbullying Tweet Analysis](./cyberbulling.md)
 Description
@@ -25,7 +25,7 @@ Description
 
 **Programs:** R
 
-**Skills:** Linear Modeling
+**Skills:** Machine Learning, Exploratory Analysis
  
 ## [Optimal Portfolio](./optimalportfolio.md)
 Description
