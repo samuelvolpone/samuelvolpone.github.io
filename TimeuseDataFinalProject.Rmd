@@ -1,0 +1,643 @@
+---
+title: "Final Project"
+output: html_document
+date: "2023-12-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+library(fastDummies)
+library(dplyr)
+library(ggplot2)
+library(scales)
+
+```
+
+# Load the data
+```{r}
+# Replace 'your_delimiter' with the actual delimiter used in your data
+data <- read_delim("C:/Users/svolp/Downloads/atusact-2022/atusact_2022.dat", delim = ",")
+
+# Now, you can export it to a CSV file
+write_csv(data, "C:/Users/svolp/OneDrive/Desktop/Stats 803/TimeData/activity_2022.csv")
+
+# Replace 'your_delimiter' with the actual delimiter used in your data
+wage_data <- read_delim("C:/Users/svolp/Downloads/atusresp-2022 (1)/atusresp_2022.dat", delim = ",")
+
+# Now, you can export it to a CSV file
+#write_csv(wage_data, "C:/Users/svolp/OneDrive/Desktop/Stats 803/TimeData/wage_2022.csv")
+
+
+
+```
+
+# Join the data
+```{r}
+# Perform an inner join based on 'TUCASEID'
+df <- merge(data, wage_data, by = "TUCASEID", all = TRUE)
+```
+
+
+
+```{r}
+head(data)
+glimpse(data)
+
+head(wage_data)
+glimpse(wage_data)
+
+head(df)
+glimpse(df)
+
+```
+
+# Checking the inner join
+
+```{r}
+null_values <- sum(is.na(df$TEERN))
+print(null_values)
+```
+
+
+
+# Exploratory Data Analysis
+```{r}
+# Filter out 0 values for earnings
+filtered_data <- df %>%
+  filter(TEERNH1O != -1)
+
+# Create a density plot with non-zero earnings
+ggplot(filtered_data, aes(x = TEERNH1O)) +
+  geom_histogram() +
+  labs(x = "Hourly Earnings", title = "Distribution of Earnings")
+
+
+filtered_data <- df %>%
+  filter(TEERNH2 != -1)
+
+ggplot(filtered_data, aes(x = TEERNH2)) +
+  geom_histogram() +
+  labs(x = "Hourly Earnings", title = "Distribution of Earnings")
+
+
+#TEERNH1O and TEERNH2 have the same defintion in the data dictionary. 
+```
+
+
+```{r}
+#TUACTIVTY and Earnings
+Earnings_Hours <- ggplot(filtered_data, aes(x = TEHRUSL1, y = TEERNH1O)) +
+  geom_col() +
+  labs(x = "Hours Worked Per week", y = "Hourly Earnings", title = "Stupid Plot") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  
+print(Earnings_Hours)
+```
+
+```{r}
+df$yearlysalary = df$TEERNH1O * 52
+
+df$yearlysalary2 = df$TEERNH2 * 52
+
+```
+
+
+```{r}
+# Filter out 0 values for earnings
+filtered_data <- df %>%
+  filter(yearlysalary != -52)
+
+# Create a density plot with non-zero earnings
+ggplot(filtered_data, aes(x = yearlysalary)) +
+  geom_histogram() +
+  labs(x = "Yearly Earnings", y = "Count", title = "Distribution of Earnings")
+
+
+filtered_data <- df %>%
+  filter(yearlysalary2 != -52)
+
+ggplot(filtered_data, aes(x = yearlysalary2)) +
+  geom_histogram() +
+  labs(x = "Yearly Earnings", y = "Count", title = "Distribution of Earnings")
+
+
+#TEERNH1O and TEERNH2 have the same defintion in the data dictionary. 
+```
+
+
+```{r}
+# Filter out 0 values for earnings (assuming 'yearlysalary' and 'yearlysalary2' are the columns)
+filtered_data <- df %>%
+  filter(yearlysalary != -52)
+
+# Create a density plot with non-zero earnings for 'yearlysalary'
+ggplot(filtered_data, aes(x = yearlysalary, fill = "Yearly Earnings")) +
+  geom_density(alpha = 0.5, color = "black") +
+  labs(x = "Yearly Earnings", y = "Density", title = "Distribution of Yearly Earnings") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Yearly Earnings" = "skyblue")) +  # Customize fill color
+  scale_x_continuous(labels = comma)
+  
+# Filter out 0 values for earnings in 'yearlysalary2'
+filtered_data2 <- df %>%
+  filter(yearlysalary2 != -52)
+
+# Create a density plot with non-zero earnings for 'yearlysalary2'
+ggplot(filtered_data2, aes(x = yearlysalary2, fill = "Yearly Earnings")) +
+  geom_density(alpha = 0.5, color = "black") +
+  labs(x = "Yearly Earnings", y = "Density", title = "Distribution of Yearly Earnings") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Yearly Earnings" = "skyblue")) +
+  scale_x_continuous(labels = comma)
+
+```
+
+
+
+```{r}
+# Calculate average time spent for each 'TUTIER1CODE'
+avg_time_per_tier <- df %>%
+  group_by(TUTIER1CODE) %>%
+  summarise(avg_time_spent = mean(as.numeric(TUCUMDUR) / 60, na.rm = TRUE))
+
+# Plotting average time spent for each 'TUTIER1CODE'
+ggplot(avg_time_per_tier, aes(x = TUTIER1CODE, y = avg_time_spent)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "Tier Code", y = "Average Time Spent", title = "Average Time Spent on Each Tier Code") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+```
+
+```{r}
+glimpse(df)
+```
+
+```{r}
+wage_anova = aov(yearlysalary ~ factor(education),
+        data = Wage)
+
+summary(wage_anova)
+```
+
+
+
+```{r}
+mean(df$yearlysalary)
+```
+
+
+```{r}
+# Assuming 'data' is your dataset and columns are named 'yearlysalary' and 'TEERNHRY'
+
+# Subset data for hourly and non-hourly employees
+hourly_data <- subset(df, TEERNHRY == 1)
+non_hourly_data <- subset(df, TEERNHRY == 2)
+
+# Perform Wilcoxon Rank Sum Test
+wilcox.test(hourly_data$yearlysalary, non_hourly_data$yearlysalary)
+
+```
+
+```{r}
+# Assuming 'data' is your dataset with columns 'yearlysalary' and 'TEERNHRY'
+
+# Filter data for hourly and non-hourly employees
+hourly_data <- subset(df, TEERNHRY == 1)
+non_hourly_data <- subset(df, TEERNHRY == 2)
+
+# Combine hourly and non-hourly data for plotting
+combined_data <- rbind(hourly_data, non_hourly_data)
+combined_data$TEERNHRY <- factor(combined_data$TEERNHRY, levels = c(1, 2), labels = c("Hourly", "Non-Hourly"))
+
+# Create a box plot to compare 'yearlysalary' between hourly and non-hourly employees
+ggplot(combined_data, aes(x = TEERNHRY, y = yearlysalary2, fill = TEERNHRY)) +
+  geom_boxplot() +
+  labs(x = "Employment Type", y = "Yearly Salary", title = "Comparison of Yearly Salary by Employment Type") +
+  theme_minimal()
+
+```
+
+```{r}
+# Assuming 'data' is your dataset and 'yearlysalary' is the column representing yearly salary
+
+# Group data by 'TRDTOCC1' and calculate the average yearly salary for each industry code
+average_salary_by_industry <- df %>%
+  group_by(TRDTOCC1) %>%
+  summarise(avg_yearly_salary = mean(yearlysalary, na.rm = TRUE))
+
+# Plotting average yearly salary for each industry code
+ggplot(average_salary_by_industry, aes(x = TRDTOCC1, y = avg_yearly_salary)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "Industry Code", y = "Average Yearly Salary", title = "Average Yearly Salary by Industry Code") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+
+```
+
+```{r}
+# Assuming 'df' is your DataFrame
+
+# Filter out values where yearlysalary is not equal to -52
+filtered_df <- subset(df, yearlysalary != -52)
+
+# Create a boxplot with formatted appearance and non-scientific notation on the y-axis
+boxplot(yearlysalary ~ factor(TRDTOCC1), data = filtered_df,
+        main = "Yearly Salary by Industry",
+        xlab = "Industry",
+        ylab = "Yearly Salary",
+        col = "skyblue",
+        border = "black",
+        notch = TRUE,
+        notchwidth = 0.5,
+        horizontal = FALSE)
+
+# Rotate x-axis labels for better readability
+par(las = 2)
+
+# Set y-axis to display non-scientific notation
+options(scipen=999)
+
+```
+
+
+```{r}
+# Group data by 'TRDTOCC1' and calculate the average yearly salary for each industry code
+average_salary_by_industry2 <- df %>%
+  group_by(TRDTOCC1) %>%
+  summarise(avg_yearly_salary2 = mean(yearlysalary2, na.rm = TRUE))
+
+# Plotting average yearly salary for each industry code
+ggplot(average_salary_by_industry2, aes(x = TRDTOCC1, y = avg_yearly_salary2)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "Industry Code", y = "Average Yearly Salary", title = "Average Yearly Salary by Industry Code") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+```
+
+```{r}
+# Assuming 'data' is your dataset and 'TRDTOCC1' is the column to be dummy coded
+
+# Dummy code 'TRDTOCC1' column
+# Assuming 'data' is your dataset and 'TRDTOCC1' is the column to be dummy coded
+
+# Dummy code 'TRDTOCC1' column
+dummy_data <- fastDummies::dummy_cols(df, select_columns = "TRDTOCC1", remove_first_dummy = TRUE)
+
+# Combine dummy variables with 'yearlysalary' column
+dummy_data <- cbind(df$yearlysalary, dummy_data)
+
+# Display the resulting DataFrame with dummy variables and yearlysalary
+glimpse(dummy_data)
+
+```
+
+```{r}
+wage_anova = aov(yearlysalary ~ factor(TRDTOCC1),
+        data = df)
+
+summary(wage_anova)
+```
+
+
+```{r}
+ind_sep <- df %>%
+  filter(TRDTOCC1 %in% c(2, 16, 17)) %>%
+  filter(yearlysalary != -52) %>%
+  select(yearlysalary, TRDTOCC1)
+
+# Displaying the 'ind' DataFrame
+glimpse(ind_sep)
+
+```
+
+```{r}
+busfin = ind_sep |>
+  filter(TRDTOCC1 == 2)
+
+sales = ind_sep |>
+  filter(TRDTOCC1 == 16)
+
+T_stat=(mean(busfin$yearlysalary)-mean(sales$len))/sqrt((sd(busfin$len)^2)/nrow(busfin)+(sd(sales$len)^2)/nrow(sales))
+
+T_stat
+```
+```{r}
+#2 sided alternative
+pvalue=pt(T_stat, df=(min(nrow(busfin), nrow(sales))-1))
+pvalue
+```
+
+
+```{r}
+criticalvalue=qt(0.05, df=min(nrow(busfin), nrow(sales))-1)
+criticalvalue
+```
+
+
+```{r}
+selected_inds <- ind_sep %>% 
+  select(yearlysalary, TRDTOCC1)
+
+inds_anova <- aov(yearlysalary ~ factor(TRDTOCC1),data = selected_inds )
+
+summary(inds_anova)
+```
+
+
+
+```{r}
+# Assuming 'ind' is your DataFrame containing the 'yearlysalary' column
+
+# Assuming 'ind' is your DataFrame containing the 'yearlysalary' column
+
+# Filter out values where yearlysalary is not equal to -52
+filtered_salary <- subset(ind, yearlysalary != -52)
+
+# Calculate mean and standard deviation of filtered yearlysalary
+mean_salary <- mean(filtered_salary$yearlysalary)
+sd_salary <- sd(filtered_salary$yearlysalary)
+
+# Number of observations
+n <- length(filtered_salary$yearlysalary)
+
+# Calculate the standard error of the mean
+standard_error <- sd_salary / sqrt(n)
+
+# Set the confidence level (here, 95%)
+confidence_level <- 0.95
+
+# Calculate the margin of error
+margin_error <- qt((1 - confidence_level) / 2 + confidence_level, n - 1) * standard_error
+
+# Calculate the confidence interval
+lower_bound <- mean_salary - margin_error
+upper_bound <- mean_salary + margin_error
+
+cat("95% Confidence Interval for yearlysalary (excluding -52): [", lower_bound, ",", upper_bound, "]\n")
+```
+
+
+```{r}
+# Assuming 'ind' is your DataFrame containing the selected columns
+
+# Perform linear regression with yearlysalary as the dependent variable and all TRDTOCC1 dummy columns as independent variables
+model <- lm(yearlysalary ~ TRDTOCC1_2 + TRDTOCC1_16 + TRDTOCC1_17, data = ind)
+
+# Summary of the regression model
+summary(model)
+
+```
+
+```{r}
+model1 <- lm(yearlysalary ~ TRDTOCC1_2, data = ind)
+
+summary(model1)
+
+```
+
+```{r}
+model2 <- lm(yearlysalary ~ TRDTOCC1_16, data = ind)
+
+summary(model2)
+
+```
+
+```{r}
+model3 <- lm(yearlysalary ~ TRDTOCC1_17, data = ind)
+
+summary(model3)
+
+```
+```{r}
+
+```
+
+
+```{r}
+model <- lm(yearlysalary ~ TRDTOCC1_2 + TRDTOCC1_16 + TRDTOCC1_17, data = ind)
+
+# Summary of the regression model
+summary(model)
+```
+
+```{r}
+mlr <- lm(yearlysalary ~ TRDTOCC1 + TEERNHRO, data = df)
+
+# Summary of the regression model
+summary(mlr)
+```
+```{r}
+durbinWatsonTest(mlr)
+
+#third test
+bptest(mlr)
+
+#4th test
+vif(mlr)
+```
+
+```{r}
+linearHypothesis(mlr, c("TRDTOCC1=0", "TEERNHRO=0"))
+```
+
+
+```{r}
+normal.mom=function(x) {
+  n=length(x)
+  mu=sum(x)/n
+  sigma2=sum((x-mu)^2)/n
+  return(c( Mean = mu, Variance = sigma2))
+}
+
+normal.mom(filtered_salary$yearlysalary)
+```
+
+
+
+```{r}
+# Assuming 'ind' is your DataFrame containing the 'yearlysalary' and 'TRDTOCC1_1' to 'TRDTOCC1_22' columns
+
+# Fit the linear regression model
+m <- lm(yearlysalary ~ TRDTOCC1, data = df)
+
+# Plotting the actual 'yearlysalary' against predicted values from the model
+plot(df$yearlysalary, fitted(m), main = "Linear Regression Model",
+     xlab = "Actual yearlysalary", ylab = "Predicted yearlysalary")
+
+# Add a regression line to the plot
+abline(lm(yearlysalary ~ TRDTOCC1 + TEERNHRO, data = df), col = "red")
+
+```
+
+
+```{r}
+#first test
+durbinWatsonTest(model)
+
+#second test
+resdf=data.frame(cbind(residual=residuals(mlr), x1=ind[,"TRDTOCC1"]))
+ggplot(data = resdf, mapping = aes(x = x1, y = residual)) +
+  geom_point()
+
+#third test
+bptest(model)
+
+#4th test
+vif(model)
+```
+```{r}
+#TEERNHRO
+
+average_hours_by_industry2 <- df %>%
+  group_by(TRDTOCC1) %>%
+  summarise(avg_yearly_salary2 = mean(yearlysalary, na.rm = TRUE))
+
+# Plotting average yearly salary for each industry code
+ggplot(average_salary_by_industry2, aes(x = TRDTOCC1, y = avg_yearly_salary)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "Industry Code", y = "Average Yearly Salary", title = "Average Yearly Salary by Industry Code") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+```
+
+```{r}
+# Filter out rows where TEERNHRO is not equal to -1
+filtered_df <- df %>%
+  filter(TEERNHRO != -1)
+
+# Calculate average hours worked by industry (TRDTOCC1)
+avg_hours_by_industry <- filtered_df %>%
+  group_by(TRDTOCC1) %>%
+  summarise(avg_hours = mean(TEERNHRO, na.rm = TRUE))
+
+# Create a bar plot of average hours worked by industry
+ggplot(avg_hours_by_industry, aes(x = as.factor(TRDTOCC1), y = avg_hours)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Average Hours Worked by Industry",
+       x = "Industry",
+       y = "Average Hours Worked") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+```{r}
+# Assuming 'data' is your dataset with columns 'yearlysalary' and 'TRDTOCC1'
+
+# Replace -1 (indicating NA) with a different unique identifier, let's say -999
+df$TRDTOCC1[df$TRDTOCC1 == -1] <- -999
+
+# Create a new dfFrame with binary columns for each unique industry code
+industry_salary_df <- df %>%
+  mutate(across(all_of(unique(df$TRDTOCC1)), ~as.integer(ifelse(TRDTOCC1 == .x, 1, 0)), .names = "{.col}_industry")) %>%
+  select(yearlysalary, ends_with("_industry"))
+
+# Replace the -999 back to -1 for consistency, if needed
+industry_salary_df[industry_salary_df == -999] <- -1
+
+# Display the resulting dfFrame
+print(industry_salary_df)
+```
+
+```{r}
+data$TRDTOCC1[data$TRDTOCC1 <= -1] <- 0  # Correcting the column assignment
+
+# Create a new DataFrame with binary columns for each unique industry code
+industry_salary_df <- df %>%
+  mutate(across(all_of(unique(df$TRDTOCC1)), ~as.integer(coalesce(TRDTOCC1, 0L) == .x), .names = "{.col}_industry")) %>%
+  select(yearlysalary, ends_with("_industry"))
+
+# Display the resulting DataFrame
+print(industry_salary_df)
+
+```
+```{r}
+df <- df %>% 
+  mutate(TRDTOCC1 = ifelse(TRDTOCC1 < 0, 0, TRDTOCC1))
+
+industry_salary_df <- df %>%
+  mutate(across(all_of(unique(df$TRDTOCC1)), ~as.integer(coalesce(TRDTOCC1, 0L) == .x), .names = "{.col}_industry")) %>%
+  select(yearlysalary, ends_with("_industry"))
+
+# Display the resulting DataFrame
+print(industry_salary_df)
+
+```
+
+
+```{r}
+# Assuming 'data' is your dataset with 'yearlysalary' and 'TRDTOCC1' columns
+
+# Create separate box plots for each industry code
+ggplot(df, aes(x = as.factor(TRDTOCC1), y = yearlysalary)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(x = "Industry Code", y = "Yearly Salary", title = "Yearly Salary Distribution by Industry") +
+  facet_wrap(~TRDTOCC1, scales = "free", ncol = 2) +  # Display box plots for each industry code separately
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+```
+
+
+```{r}
+ggplot(selected_inds, aes(x = as.factor(TRDTOCC1), y = yearlysalary)) +
+  geom_boxplot(fill = "skyblue")
+```
+
+```{r}
+# Assuming 'selected_inds' is your DataFrame
+
+# Create the boxplot with improved appearance
+ggplot(selected_inds, aes(x = as.factor(TRDTOCC1), y = yearlysalary)) +
+  geom_boxplot(fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Yearly Salary by Industry",
+       x = "Industry",
+       y = "Yearly Salary") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE))
+```
+
+
+
+```{r}
+earnings_class_of_worker_code <- ggplot(filtered_data, aes(x = TEIO1COW, y = TEERNH1O)) +
+  geom_boxplot() +
+  labs(x = "Class of Worker Code", y = "Hourly Earnings", title = "Better Plot") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+print(earnings_class_of_worker_code)
+```
+
+```{r}
+filtered_data <- df %>%
+  filter(TEIO1COW != 4)
+
+ggplot(filtered_data, aes(x = TEIO1COW, y = TEERNH1O)) +
+  geom_boxplot() +
+  labs(x = "Class of Worker Code", y = "Hourly Earnings", title = "Better Plot") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+```{r}
+# Extracting the first two digits of the activity code
+df <- df %>%
+    mutate(TUACTIVITY_STR = as.character(TRCODE),  # Convert to string
+         first_two_digits = str_sub(TUACTIVITY_STR, 1, 2))
+
+average_salary_by_activity <- filtered_data %>%
+  group_by(first_two_digits) %>%
+  summarize(average_salary = mean(yearlysalary, na.rm = TRUE))
+
+# Create box plots for salary grouped by the first two digits
+ggplot(average_salary_by_activity, aes(x = first_two_digits, y = average_salary)) +
+  geom_col() +
+  labs(
+    title = 'Box plot of Salary by First Two Digits of Activity Code',
+    x = 'First Two Digits of Activity Code',
+    y = 'Salary') +
+    scale_y_continuous(labels = label_number(accuracy = 1))+
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
