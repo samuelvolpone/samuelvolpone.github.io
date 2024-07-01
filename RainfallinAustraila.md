@@ -141,6 +141,8 @@ combined_plot <- plot_grid(MinTemp_Boxplot, MaxTemp_Boxplot, Rainfall_Boxplot, E
 # Display the combined plot
 combined_plot
 ```
+![Figure 1](images/RainfallProject/Figure 1.png)
+
 
 4.  For the categorical variables, plot bar charts for the different values of RainTomorrow.
 ```{r}
@@ -176,6 +178,8 @@ combined_bar_chart <- plot_grid(plotlist = bar_charts, align = "v")
 print(combined_bar_chart)
 
 ```
+
+![Figure 2](images/RainfallProject/Figure 2.png)
 
 5.  Test/training separation
 
@@ -219,6 +223,8 @@ cm
     
 ```
 
+![Figure 3](images/RainfallProject/Figure 3.png)
+
 ```{{r}}
 # Create ROC curve
 roc_curve <- roc(df_test$RainTomorrow, logprob)
@@ -231,6 +237,7 @@ legend("bottomright", legend = paste("AUC =", round(auc(roc_curve), 2)), col = "
 
 ```
 
+![Figure 4](images/RainfallProject/Figure 4.png)
 
 ## Part 3: KNN
 
