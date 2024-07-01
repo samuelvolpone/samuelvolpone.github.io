@@ -196,9 +196,9 @@ df_test = df[-indexes,]
 # test_locations <- table(df_test$Location)
 ```
 
-## Part 2: Logistic Regression or LDA
+## Part 2: Logistic Regression
 
-1.  Develop a classification model where the variable `y` is the dependent variable using the Logistic Regression or LDA, rest of the variables, and your training data set.
+1.  Develop a classification model where the variable RainTomorrow is the dependent variable using Logistic Regression, with the remaining variables being the regressors.
 
 ```{r}
 # Logistic Regression with all variables
