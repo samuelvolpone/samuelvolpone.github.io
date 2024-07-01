@@ -145,6 +145,7 @@ combined_plot
 
 
 4.  For the categorical variables, plot bar charts for the different values of RainTomorrow.
+
 ```{r}
 # Location WindGustDir WindDir9am WindDir3pm
 
