@@ -6,12 +6,12 @@ For this project, we were tasked with the goal to research a time series data th
 
 **Skills:** Data Visualization, Financial Modeling
 
-## [Airbnb High Booking Rates](./AirbnbProject.md)
+## [Capstone Project- Airbnb High Booking Rates](./AirbnbProject.md)
 Description
 
 **Programs:** R, MS Powerpoint
 
-**Skills:** Data Visualization
+**Skills:** Data Visualization, Machine Learning
   
 ## [Cyberbullying Tweet Analysis](./cyberbulling.md)
 Description
@@ -20,12 +20,12 @@ Description
 
 **Skills:** Data Visualization, Financial Modeling
  
-## [Rainfall in Australia](./rainfall.md)
+## [Rainfall in Australia](./RainfallinAustraila.md)
 Description
 
 **Programs:** R
 
-**Skills:** Linear Modeling
+**Skills:** Machine Learning, Exploratory Analysis
  
 ## [Optimal Portfolio](./optimalportfolio.md)
 Description
