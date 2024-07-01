@@ -6,7 +6,7 @@ For this project, we were tasked with the goal to research a time series data th
 
 **Skills:** Data Visualization, Financial Modeling
 
-## [Airbnb High Booking Rates](./AirbnbProject.md)
+## [Capstone Project- Airbnb High Booking Rates](./AirbnbProject.md)
 Description
 
 **Programs:** R, MS Powerpoint
