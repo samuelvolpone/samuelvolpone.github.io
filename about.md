@@ -9,4 +9,5 @@ A few random facts about me
 * My current favorite game is Brawl Stars
 
 Here is a picture of my friend Chris and I on South Twin Mountain last summer!
-images/hike pic.jpg
+
+![southtwin]images/hike pic.jpg
