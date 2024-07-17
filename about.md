@@ -11,4 +11,4 @@ A few random facts about me
 
 Here is a picture of my friend Chris and I on South Twin Mountain last summer!
 
-![southtwin]images/hike pic.jpg
+![southtwin](images/hike pic.jpg)
