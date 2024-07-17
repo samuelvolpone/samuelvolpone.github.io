@@ -10,6 +10,6 @@ A few random facts about me -
 * I take fantasy football very seriously
 * My current favorite game is Brawl Stars
 
-Here is a picture of my friend Chris and I on South Twin Mountain last summer!
+Here is a picture of my friend Chris and I on South Twin mountain last summer!
 
 ![southtwin](images/hike pic.jpg)
