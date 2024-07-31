@@ -7,8 +7,10 @@ Portfolio optimization is a fundamental concept in finance that focuses on selec
 Adjusting closing prices for the 20 securities chosen will account for dividends and stock splits if applicable. 
 ![Figure 1](images/OptimalPortfolioProject/Fig1.png)
 
+
 Now we must standardize to get % returns per month. 
 ![Figure 2](images/OptimalPortfolioProject/Fig2.png)
+
 
 ![Figure 3](images/OptimalPortfolioProject/Fig3.png)
 ![Figure 4](images/OptimalPortfolioProject/Fig4.png)
