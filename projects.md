@@ -7,7 +7,9 @@ For this project, we were tasked with the goal to research a time series data th
 **Skills:** Data Visualization, Financial Modeling
 
 ## [Capstone Project- Airbnb High Booking Rates](./AirbnbProject.md)
-Description
+Part I of this project was to build the most accurate statistical model predicting the binary variable high_booking according to the auc. This was part of a class wide kaggle competition. 
+
+Part II was to choose a specific market, and build a business case and present it to an investor. Our group specifically chose three recent listings and pithed those to the investor as likely going to be high_booking in the near future. 
 
 **Programs:** R, MS Powerpoint
 
@@ -18,21 +20,21 @@ Description
 
 **Programs:** R, MS Powerpoint
 
-**Skills:** Data Visualization, Financial Modeling
+**Skills:** Text Analysis, Unstructured Data
  
 ## [Rainfall in Australia](./RainfallinAustraila.md)
-Description
+In this markdown file we classified the binary variable RainTomorrow based on a number of predictors. The accuracy metric used was area under the curve.
 
 **Programs:** R
 
-**Skills:** Machine Learning, Exploratory Analysis
+**Skills:** Statistical Modeling, Exploratory Analysis
  
 ## [Optimal Portfolio](./optimalportfolio.md)
-Description
+This project tasked us to choose an optimization problem and solve it. So we decided to optimize the weights of 20 stocks in a portfolio based on Sharpe Ratio, minimum variance, and equal weights. Our goal was to outperform the S&P500. 
 
-**Programs:** MS Excel, Excel Solver
+**Programs:** MS Excel, Excel Solver, MS Powerpoint
 
-**Skills:** Non-Linear optimization, Financial Modeling
+**Skills:** Non-Linear Optimization, Financial Modeling
  
 ## [Boston Crime Dashboard](./bostoncrime.md)
 Description
@@ -41,22 +43,15 @@ Description
 
 **Skills:** Data Visualization, Data Exploration
  
-## [American Time Use Data](./timeuse.md)
-Description
-
-**Programs:** R, MS Powerpoint
-
-**Skills:** 
- 
 ## [Movie Data Web Scraping](./movies.md)
 Description
 
 **Programs:** Python, Beautiful Soup, Pandas, NumPy
 
-**Skills:** Data Visualization,
+**Skills:** Data Visualization, Web-Scraping
    
 ## [National Basketball Association Relational Database](./nba.md)
-Description
+We designed a relational database, then imported the data. Then we ran an analysis on the data using SQL queries.
 
 **Programs:** MySQL, AWS, MS Excel
 
