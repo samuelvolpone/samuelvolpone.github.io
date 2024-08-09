@@ -43,7 +43,7 @@ Description
 
 **Skills:** Data Visualization, Data Exploration
  
-## [Movie Data Web Scraping](./movies.md)
+## [Movie Data Web Scraping](./WebScrapingProject.md)
 Description
 
 **Programs:** Python, Beautiful Soup, Pandas, NumPy
