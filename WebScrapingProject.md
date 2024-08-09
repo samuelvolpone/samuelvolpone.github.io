@@ -65,13 +65,125 @@ imdb
 ```
 
 ## Exploratory Data Analysis
+```{python}
+#Distribution of movies over time
+distofmovies_plot = movies.groupby('Decade')['Title'].count().plot(kind = 'bar', title = 'Distribution of Movies Over Decades')
+distofmovies_plot
+```
 
+Words
+
+!
+
+
+```{python}
+#Histogram of Critic Score and Score
+movies['CriticScore'] = movies['Metascore']/10
+plt.hist(movies['Score'], alpha = .5, bins = 10, color= 'blue', label =  'Score')
+plt.hist(movies['CriticScore'], alpha = .5, bins = 10, color = 'pink', label = 'Critic Score')
+plt.legend(loc = 'upper right')
+plt.title('Histogram of Critic Score and Score')
+plt.show()
+```
+
+Words
+
+!
+
+```{python}
+movies['Genre'] = movies['Genre'].str.split(', ')
+movies = movies.explode('Genre')
+
+# Calculate the mean Score and Revenue by Genre
+genre_stats = movies.groupby('Genre')['Score', 'Revenue'].mean().sort_values('Revenue', ascending=False).head(10)
+
+# Plotting
+fig, ax = plt.subplots(figsize=(14, 8))
+
+# Plot average revenue by genre
+genre_stats['Revenue'].plot(kind='bar', color='blue', ax=ax, width=0.4, position=1, label='Average Revenue (in millions)')
+
+# Plot average score by genre on a secondary axis
+ax2 = ax.twinx()
+genre_stats['Score'].plot(kind='bar', color='orange', ax=ax2, width=0.4, position=0, label='Average Score')
+
+# Set the labels and titles
+ax.set_ylabel('Average Revenue (in millions)', color='blue')
+ax2.set_ylabel('Average Score', color='orange')
+ax.set_xlabel('Genre')
+ax.set_title('Average Score and Revenue by Genre')
+
+# Set legends
+ax.legend(loc='upper left')
+ax2.legend(loc='upper right')
+
+plt.show()
+```
+
+Words
+
+!
+
+```{python}
+correlation_matrix = movies[['Score', 'Metascore', 'Vote', 'Runtime', 'Revenue']].corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap of Numerical Features')
+plt.show()
+```
+
+Words
+
+!
+
+```{python}
+average_revenue_by_director = movies.groupby('Director')['Revenue'].mean().nlargest(5)
+plt.figure(figsize=(10, 5))
+average_revenue_by_director.plot(kind='bar')
+plt.title('Top 5 Directors with the Highest Average Revenue')
+plt.ylabel('Average Revenue (in millions)')
+plt.show()
+```
+
+Words
+
+!
 
 ## Bivariate Analysis
+```{python}
+plt.figure(figsize=(14, 7))
+sns.scatterplot(data=movies, x='Runtime', y='Score', alpha=0.6, color='red')
+plt.title('Scatter Plot of Runtime vs. IMDB Score')
+plt.xlabel('Runtime (minutes)')
+plt.ylabel('IMDB Score')
+plt.show()
+```
 
+Words
+
+!
+
+```{python}
+plt.figure(figsize=(14, 7))
+sns.scatterplot(data=movies, x='Year', y='Score', alpha=0.6, color='green')
+plt.title('Scatter Plot of Year of Release vs. IMDB Score')
+plt.xlabel('Year of Release')
+plt.ylabel('IMDB Score')
+plt.show()
+```
+
+Words
+
+!
 
 ## Text Analysis
+```{python}
 
+```
+
+Words
+
+!
 
 ## Comparative Analysis
 
