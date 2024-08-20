@@ -64,6 +64,8 @@ imdb = imdb.drop('Review Score', axis=1)
 imdb
 ```
 
+![Figure 1](images/WebScrapingProject/Pic1.png)
+
 ## Exploratory Data Analysis
 ```{python}
 #Distribution of movies over time
@@ -73,7 +75,7 @@ distofmovies_plot
 
 Words
 
-!
+![Figure 2](images/WebScrapingProject/Pic2.png)
 
 
 ```{python}
@@ -88,7 +90,7 @@ plt.show()
 
 Words
 
-!
+![Figure 3](images/WebScrapingProject/Pic3.png)
 
 ```{python}
 movies['Genre'] = movies['Genre'].str.split(', ')
@@ -122,7 +124,7 @@ plt.show()
 
 Words
 
-!
+![Figure 4](images/WebScrapingProject/Pic4.png)
 
 ```{python}
 correlation_matrix = movies[['Score', 'Metascore', 'Vote', 'Runtime', 'Revenue']].corr()
@@ -134,7 +136,7 @@ plt.show()
 
 Words
 
-!
+![Figure 5](images/WebScrapingProject/Pic5.png)
 
 ```{python}
 average_revenue_by_director = movies.groupby('Director')['Revenue'].mean().nlargest(5)
@@ -147,7 +149,7 @@ plt.show()
 
 Words
 
-!
+![Figure 6](images/WebScrapingProject/Pic6.png)
 
 ## Bivariate Analysis
 ```{python}
@@ -161,7 +163,7 @@ plt.show()
 
 Words
 
-!
+![Figure 7](images/WebScrapingProject/Pic7.png)
 
 ```{python}
 plt.figure(figsize=(14, 7))
@@ -174,7 +176,7 @@ plt.show()
 
 Words
 
-!
+![Figure 8](images/WebScrapingProject/Pic8.png)
 
 ## Text Analysis
 ```{python}
