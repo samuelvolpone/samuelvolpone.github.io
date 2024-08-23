@@ -1,7 +1,7 @@
 #### [<back to projects](./projects.md)
 # Web Scraping in Python using Beautiful Soup
 ## Introduction
-blah blah
+In this project, we scraped the IMDB website for movie data, then performed an analysis on the resulting dataset. Packages used include NumPy, Seaborn, WordCloud, BeautifulSoup, Pandas, matplotlib.
 
 ## Scraping
 ```{python}
@@ -73,7 +73,6 @@ distofmovies_plot = movies.groupby('Decade')['Title'].count().plot(kind = 'bar',
 distofmovies_plot
 ```
 
-Words
 
 ![Figure 2](images/WebScrapingProject/Pic2.png)
 
@@ -88,7 +87,6 @@ plt.title('Histogram of Critic Score and Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 3](images/WebScrapingProject/Pic3.png)
 
@@ -122,7 +120,6 @@ ax2.legend(loc='upper right')
 plt.show()
 ```
 
-Words
 
 ![Figure 4](images/WebScrapingProject/Pic4.png)
 
@@ -134,7 +131,6 @@ plt.title('Correlation Heatmap of Numerical Features')
 plt.show()
 ```
 
-Words
 
 ![Figure 5](images/WebScrapingProject/Pic5.png)
 
@@ -147,7 +143,6 @@ plt.ylabel('Average Revenue (in millions)')
 plt.show()
 ```
 
-Words
 
 ![Figure 6](images/WebScrapingProject/Pic6.png)
 
@@ -161,7 +156,6 @@ plt.ylabel('IMDB Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 7](images/WebScrapingProject/Pic7.png)
 
@@ -174,21 +168,184 @@ plt.ylabel('IMDB Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 8](images/WebScrapingProject/Pic8.png)
 
 ## Text Analysis
 ```{python}
-
+# creates a string with all the element of the password column:
+text = " ".join(str(i) for i in genre1_df.Title)
+# lower max_font_size, change the maximum number of word and lighten the background and  generate a word cloud image
+wordcloud = WordCloud(background_color="white").generate(text)
+# figsize=(10,10), changing (x,y) will change the word cloud
+plt.figure(figsize=(10,10))
+# Display the generated image:
+# the matplotlib way:
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
 ```
 
-Words
+![Figure 9](images/WebScrapingProject/Pic9.png)
 
-!
+![Figure 10](images/WebScrapingProject/pic10.png)
+
+![Figure 11](images/WebScrapingProject/pic11.png)
+
+```{python}
+avg_runtime_by_length = movies.groupby('Description_Length_Bins')['Runtime'].mean()
+
+plt.figure(figsize=(10, 6))
+avg_runtime_by_length.plot(kind='bar', color='blue', alpha=0.7)
+plt.title('Average Revenue by Description Length')
+plt.xlabel('Description Length (in bins)')
+plt.ylabel('Average Revenue')
+plt.xticks(rotation=45)
+plt.show()
+```
+
+![Figure 12](images/WebScrapingProject/pic12.png)
 
 ## Comparative Analysis
+```{python}
+# Top 5 directors in the 1990s
+nineties_directors = movies[movies['Decade'] == 1990]['Director'].value_counts().nlargest(5)
 
+# Top 5 directors in the 2010s
+twenty_tens_directors = movies[movies['Decade'] == 2010]['Director'].value_counts().nlargest(5)
+
+print("Top 5 directors in the 1990s:")
+print(nineties_directors)
+
+print("\nTop 5 directors in the 2010s:")
+print(twenty_tens_directors)
+```
+
+![Figure 13](images/WebScrapingProject/pic13.png)
+
+```{python}
+# Top 5 directors and their highest Metascores in the 1990s
+top_directors_90s = movies[movies['Decade'] == 1990].groupby('Director')['Metascore'].max().nlargest(5)
+print("Top 5 directors and their highest Metascores in the 1990s:")
+print(top_directors_90s)
+
+# Top 5 directors and their highest Metascores in the 2010s
+top_directors_2010s = movies[movies['Decade'] == 2010].groupby('Director')['Metascore'].max().nlargest(5)
+print("\nTop 5 directors and their highest Metascores in the 2010s:")
+print(top_directors_2010s)
+```
+
+![Figure 14](images/WebScrapingProject/pic14.png)
+
+```{python}
+# Box plot for Revenue in the 1990s
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='Decade', y='Revenue', data = nineties)
+plt.title('Revenue Distribution in the 1990s')
+plt.xlabel('Decade')
+plt.ylabel('Revenue')
+plt.show()
+
+# Box plot for Revenue in the 2010s
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='Decade', y='Revenue', data=twenty_tens)
+plt.title('Revenue Distribution in the 2010s')
+plt.xlabel('Decade')
+plt.ylabel('Revenue')
+plt.show()
+```
+
+![Figure 15](images/WebScrapingProject/pic15.png)
+
+![Figure 16](images/WebScrapingProject/pic16.png)
+
+```{python}
+# plot for 90's
+plt.figure(figsize=(8, 6))
+plt.scatter(nineties['Revenue'], nineties['CriticScore'], alpha=0.5)
+plt.title('Revenue vs CriticScore in the 1990s')
+plt.xlabel('Revenue')
+plt.ylabel('CriticScore')
+plt.grid(True)
+plt.show()
+
+# plot for the 2010s
+plt.figure(figsize=(8, 6))
+plt.scatter(twenty_tens['Revenue'], twenty_tens['CriticScore'], alpha=0.5)
+plt.title('Revenue vs CriticScore in the 2010s')
+plt.xlabel('Revenue')
+plt.ylabel('CriticScore')
+plt.grid(True)
+plt.show()
+```
+
+![Figure 17](images/WebScrapingProject/pic17.png)
+
+![Figure 18](images/WebScrapingProject/pic18.png)
+
+```{python}
+# Extract movies from the 1990s
+nineties = movies[movies['Decade'] == 1990]
+
+# Extract movies from the 2010s
+twenty_tens = movies[movies['Decade'] == 2010]
+
+nineties_top_genres = nineties['Genre'].value_counts().nlargest(10)
+twenty_tens_top_genres = twenty_tens['Genre'].value_counts().nlargest(10)
+
+# Plotting top 10 genre distribution
+plt.figure(figsize=(10, 6))
+plt.bar(nineties_top_genres.index, nineties_top_genres.values, alpha=0.7, label='1990s')
+plt.bar(twenty_tens_top_genres.index, twenty_tens_top_genres.values, alpha=0.7, label='2010s')
+plt.xlabel('Genres')
+plt.ylabel('Frequency')
+plt.title('Top 10 Genre Distribution Comparison')
+plt.legend()
+plt.xticks(rotation=45)
+plt.show()
+```
+
+![Figure 19](images/WebScrapingProject/pic19.png)
 
 ## Multivariate Analysis
+```{python}
+movies['Title_Word_Count'] = movies['Title'].apply(lambda x: len(x.split()))
+movies['Description_Word_Count'] = movies['Description'].apply(lambda x: len(x.split()))
+plt.figure(figsize=(15, 10))
 
+# Number of words in a title vs Revenue
+plt.subplot(2, 3, 1)
+sns.regplot(x='Title_Word_Count', y='Revenue', data=movies)
+plt.title('Title Word Count vs Revenue')
+
+# Number of Words in the Description vs Revenue
+plt.subplot(2, 3, 2)
+sns.regplot(x='Description_Word_Count', y='Revenue', data=movies)
+plt.title('Description Word Count vs Revenue')
+
+# Score vs Revenue
+plt.subplot(2, 3, 3)
+sns.regplot(x='Score', y='Revenue', data=movies)
+plt.title('IMDB Score vs Revenue')
+
+# Metascore vs Revenue
+plt.subplot(2, 3, 4)
+sns.regplot(x='Metascore', y='Revenue', data=movies)
+plt.title('Metascore vs Revenue')
+
+# Vote vs Revenue
+plt.subplot(2, 3, 5)
+sns.regplot(x='Vote', y='Revenue', data=movies)
+plt.title('Vote Count vs Revenue')
+
+# Runtime vs Revenue
+plt.subplot(2, 3, 6)
+sns.regplot(x='Runtime', y='Revenue', data=movies)
+plt.title('Runtime vs Revenue')
+
+# Adjust layout
+plt.tight_layout()
+plt.show()
+```
+
+![Figure 20](images/WebScrapingProject/pic20.png)
