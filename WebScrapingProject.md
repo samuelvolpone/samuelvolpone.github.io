@@ -1,7 +1,7 @@
 #### [<back to projects](./projects.md)
 # Web Scraping in Python using Beautiful Soup
 ## Introduction
-In this project, we scraped the IMDB website for movie data, then performed an analysis on the resulting dataset.
+In this project, we scraped the IMDB website for movie data, then performed an analysis on the resulting dataset. Packages used include NumPy, Seaborn, WordCloud, BeautifulSoup, Pandas, matplotlib.
 
 ## Scraping
 ```{python}
