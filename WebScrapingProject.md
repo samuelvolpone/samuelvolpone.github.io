@@ -1,7 +1,7 @@
 #### [<back to projects](./projects.md)
 # Web Scraping in Python using Beautiful Soup
 ## Introduction
-blah blah
+In this project, we scraped the IMDB website for movie data, then performed an analysis on the resulting dataset.
 
 ## Scraping
 ```{python}
