@@ -73,7 +73,6 @@ distofmovies_plot = movies.groupby('Decade')['Title'].count().plot(kind = 'bar',
 distofmovies_plot
 ```
 
-Words
 
 ![Figure 2](images/WebScrapingProject/Pic2.png)
 
@@ -88,7 +87,6 @@ plt.title('Histogram of Critic Score and Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 3](images/WebScrapingProject/Pic3.png)
 
@@ -122,7 +120,6 @@ ax2.legend(loc='upper right')
 plt.show()
 ```
 
-Words
 
 ![Figure 4](images/WebScrapingProject/Pic4.png)
 
@@ -134,7 +131,6 @@ plt.title('Correlation Heatmap of Numerical Features')
 plt.show()
 ```
 
-Words
 
 ![Figure 5](images/WebScrapingProject/Pic5.png)
 
@@ -147,7 +143,6 @@ plt.ylabel('Average Revenue (in millions)')
 plt.show()
 ```
 
-Words
 
 ![Figure 6](images/WebScrapingProject/Pic6.png)
 
@@ -161,7 +156,6 @@ plt.ylabel('IMDB Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 7](images/WebScrapingProject/Pic7.png)
 
@@ -174,7 +168,6 @@ plt.ylabel('IMDB Score')
 plt.show()
 ```
 
-Words
 
 ![Figure 8](images/WebScrapingProject/Pic8.png)
 
