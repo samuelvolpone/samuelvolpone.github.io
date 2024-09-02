@@ -6,6 +6,20 @@ For this project, we were tasked with the goal to research a time series data th
 
 **Skills:** Data Visualization, Financial Modeling
 
+## [Optimal Portfolio](./optimalportfolio.md)
+This project tasked us to choose an optimization problem and solve it. So we decided to optimize the weights of 20 stocks in a portfolio based on Sharpe Ratio, minimum variance, and equal weights. Our goal was to outperform the S&P500. 
+
+**Programs:** MS Excel, Excel Solver, MS Powerpoint
+
+**Skills:** Non-Linear Optimization, Financial Modeling
+
+## [Movie Data Web Scraping](./WebScrapingProject.md)
+In this project, ou group successfully collaborated on scraping data into python from IMDB. We then performed an analysis on said data. 
+
+**Programs:** Python, Beautiful Soup, Pandas, NumPy
+
+**Skills:** Data Visualization, Web-Scraping
+
 ## [Capstone Project- Airbnb High Booking Rates](./AirbnbProject.md)
 
 COMING SOON!
@@ -33,13 +47,6 @@ In this markdown file we classified the binary variable RainTomorrow based on a 
 
 **Skills:** Statistical Modeling, Exploratory Analysis
  
-## [Optimal Portfolio](./optimalportfolio.md)
-This project tasked us to choose an optimization problem and solve it. So we decided to optimize the weights of 20 stocks in a portfolio based on Sharpe Ratio, minimum variance, and equal weights. Our goal was to outperform the S&P500. 
-
-**Programs:** MS Excel, Excel Solver, MS Powerpoint
-
-**Skills:** Non-Linear Optimization, Financial Modeling
- 
 ## [Boston Crime Dashboard](./bostoncrime.md)
 
 COMING SOON!
@@ -48,13 +55,6 @@ COMING SOON!
 
 **Skills:** Data Visualization, Data Exploration
  
-## [Movie Data Web Scraping](./WebScrapingProject.md)
-In this project, ou group successfully collaborated on scraping data into python from IMDB. We then performed an analysis on said data. 
-
-**Programs:** Python, Beautiful Soup, Pandas, NumPy
-
-**Skills:** Data Visualization, Web-Scraping
-   
 ## [National Basketball Association Relational Database](./nba.md)
 
 COMING SOON!
