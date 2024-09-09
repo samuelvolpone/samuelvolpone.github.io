@@ -1,9 +1,7 @@
----
-title: "AirbnbProject"
-author: "SAM"
-date: "2024-04-03"
-output: html_document
----
+#### [<back to projects](./projects.md)
+# Classification of High Booking Airbnb Properties
+## Introduction
+In the rapidly growing short-term rental market, making decisions based on solid data is essential for improving property management and increasing guest satisfaction. This file centers on cleaning and refining an Airbnb dataset , preparing it for further analysis that could influence the strategic choices of local hosts and stakeholders. This dataset contains comprehensive information about the listings information, including details about the hosts, spatial data, pricing, reviews, and other attributes that describe the properties listed on Airbnb.
 
 #### Load Libraries
 ```{r}
