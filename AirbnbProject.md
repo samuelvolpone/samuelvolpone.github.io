@@ -99,7 +99,7 @@ df <- df_big %>%
 
 
 
-## A bunch of mutates Training set
+#### A bunch of mutates Training set
 ```{r}
 df <- df %>% 
   mutate_if(is.logical, as.numeric) %>% 
@@ -137,7 +137,7 @@ processed_data <- processed_data %>%
   mutate(high_booking = as.factor(high_booking))
 ```
 
-## Do the same thing to test data
+#### Do the same thing to test data
 ```{r}
 airbnb_test <- airbnb_test %>% 
   mutate_if(is.logical, as.numeric) %>% 
@@ -173,7 +173,7 @@ test_data <- prep(rec_test) %>% bake(new_data = NULL)
 ```
 
 
-# Attempting to solve the panel data problem
+#### Attempting to solve the panel data problem
 ```{r}
 
 glimpse(processed_data)
@@ -257,16 +257,11 @@ xgb_wf <- workflow() %>%
   add_recipe(airbnb_xg) %>% 
   add_model(xgb_spec)
 ```
-
-
 ```{r}
 set.seed(80)
 air_folds <- vfold_cv(df_analysis_unique, strata = high_booking)
 air_folds
 ```
-
-
-####
 ```{r}
 set.seed(80)
 
