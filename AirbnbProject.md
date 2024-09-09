@@ -205,7 +205,7 @@ df_analysis_unique <- training(df_split_unique)
 df_assessment_unique <- testing(df_split_unique)
 ```
 
-# Creating the recipe
+#### Creating the recipe
 ```{r}
 airbnb_recipe <- 
   recipe(high_booking ~ log_price + review_scores_rating + instant_bookable + response_code + host_acceptance_rate + host_response_rate + accommodates + beds + bedrooms + bathrooms + extra_people + minimum_nights, data = df_analysis_unique) %>% 
@@ -280,6 +280,7 @@ final_xgb <- finalize_workflow(xgb_wf, best_xg)
 final_xgb
 ```
 
+![Figure 1](images/AirbnbProject/Pic1.png)
 
 #### Final model on assessment data
 ```{r}
@@ -302,6 +303,7 @@ roc_curve <- roc(results$high_booking, results$Predicted_Probability)
 # Plot ROC curve
 plot(roc_curve, main = "ROC Curve", col = "blue")
 ```
+![Figure 2](images/AirbnbProject/Pic2.png)
 
 
 
