@@ -22,8 +22,6 @@ In this project, ou group successfully collaborated on scraping data into python
 
 ## [Capstone Project- Airbnb High Booking Rates](./AirbnbProject.md)
 
-COMING SOON!
-
 Part I of this project was to build the most accurate statistical model predicting the binary variable high_booking according to the auc. This was part of a class wide kaggle competition. 
 
 Part II was to choose a specific market, and build a business case and present it to an investor. Our group specifically chose three recent listings and pithed those to the investor as likely going to be high_booking in the near future. 
