@@ -286,3 +286,7 @@ lines(len:(len+ahead), c(tail(priceNVDA, 1), expost),
       col = 2)
 ```
 ![Figure 8](images/TimeSeriesProject/Fig 8.png)
+
+## Conclusion
+This model predicts a continued strong performance for NVDA. The red line is the prediction, and the dotted lines are the upper and lower bounds.
+
