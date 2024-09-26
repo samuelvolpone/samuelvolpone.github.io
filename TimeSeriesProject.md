@@ -221,7 +221,7 @@ ggplot(closing_df, aes(x = date)) +
 ```
 ![Figure 5](images/TimeSeriesProject/Fig 5.png)
 
-# Correlation Matrix
+## Correlation Matrix
 
 ```{r}
 # taking date out of the df
@@ -239,7 +239,7 @@ corrplot(correlation_matrix, method = "square", type = "upper", order = "hclust"
 ```
 ![Figure 6](images/TimeSeriesProject/Fig 6.png)
 
-# Stochastic Volatility for NVDA w/ S&P500 and AMD prior
+## Stochastic Volatility for NVDA w/ S&P500 and AMD prior
 
 ```{r}
 # Predicting NVDA based on S&P500 and AMD in the mean
@@ -261,7 +261,7 @@ plot(res)
 ![Figure 7](images/TimeSeriesProject/Fig 7.png)
 
 
-### Predicting Based on the Model with S&P500 and AMD prior 30 days ahead
+## Predicting Based on the Model with S&P500 and AMD prior 30 days ahead
 
 ```{r}
 # Use predict.svdraws to obtain predictive distributions
