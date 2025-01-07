@@ -14,7 +14,7 @@ This project tasked us to choose an optimization problem and solve it. So we dec
 **Skills:** Non-Linear Optimization, Financial Modeling
 
 ## [Movie Data Web Scraping](./WebScrapingProject.md)
-In this project, ou group successfully collaborated on scraping data into python from IMDB. We then performed an analysis on said data. 
+In this project, our group successfully collaborated on scraping data into python from IMDB. We then performed an analysis on said data. 
 
 **Programs:** Python, Beautiful Soup, Pandas, NumPy
 
