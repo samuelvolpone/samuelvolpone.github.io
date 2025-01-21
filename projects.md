@@ -29,14 +29,6 @@ Part II was to choose a specific market, and build a business case and present i
 **Programs:** R, MS Powerpoint
 
 **Skills:** Data Visualization, Machine Learning
-  
-## [Cyberbullying Tweet Analysis](./cyberbulling.md)
-
-COMING SOON!
-
-**Programs:** R, MS Powerpoint
-
-**Skills:** Text Analysis, Unstructured Data
  
 ## [Rainfall in Australia](./RainfallinAustraila.md)
 In this markdown file we classified the binary variable RainTomorrow based on a number of predictors. The accuracy metric used was area under the curve.
@@ -45,21 +37,13 @@ In this markdown file we classified the binary variable RainTomorrow based on a 
 
 **Skills:** Statistical Modeling, Exploratory Analysis
  
-## [Boston Crime Dashboard](./bostoncrime.md)
-
-COMING SOON!
-
-**Programs:** Tableau, MS Excel
-
-**Skills:** Data Visualization, Data Exploration
- 
 ## [National Basketball Association Relational Database](./nba.md)
 
 COMING SOON!
 
-We designed a relational database, then imported the data. Then we ran an analysis on the data using SQL queries.
+We designed a relational database in mySQL and hosted it on Amazon RDS. Then we ran an analysis on the data using SQL queries.
 
 **Programs:** MySQL, AWS, MS Excel
 
-**Skills:** 
+**Skills:** ETL, Database Management
  
